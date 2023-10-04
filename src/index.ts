@@ -1,10 +1,18 @@
 import express from 'express';
-import todosRouter from './routes/todos'
-const app = express()
+import 'dotenv/config';
+import './database/connectdb';
+import todosRouter from './routes/todos';
+import cors from 'cors';
 
+const app = express()
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    credentials: true
+}));
 app.use(express.json())
 
-const PORT = 4000
+const PORT = process.env.PORT || 5000
 
 app.get('/ping', (_req, res) => {
     console.log('pingueddd')

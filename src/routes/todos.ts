@@ -1,13 +1,10 @@
 import express from 'express'
+import { getAllToDos, createNewToDo, deleteToDo } from '../services/todosServices'
 
 const router = express.Router()
 
-router.get('/', (_req, res) => {
-    res.send('Fetching all todos')
-})
-
-router.post('/', (_req, res) => {
-    res.send('Create todo')
-})
+router.get('/', getAllToDos)
+router.post('/new', createNewToDo)
+router.delete('/delete/:id', deleteToDo)
 
 export default router;
